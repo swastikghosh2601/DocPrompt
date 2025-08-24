@@ -2,11 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import About from "./pages/About"; // 👈 import the About page
+import About from "./pages/About";
+import Contact from "./pages/Contact";   // 👈 if you’ve built a Contact page
+import Navbar from "./components/Navbar"; // 👈 make sure you have a Navbar
 
 export default function App() {
   return (
     <Router>
+      {/* Navbar stays at the top */}
+      <Navbar />  
+
       <div className="min-h-screen w-full">
         <Routes>
           {/* Home route */}
@@ -14,6 +19,12 @@ export default function App() {
 
           {/* About route */}
           <Route path="/about" element={<About />} />
+
+          {/* Contact route */}
+          <Route path="/contact" element={<Contact />} />
+
+          {/* Catch-all / 404 route (optional) */}
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         </Routes>
       </div>
     </Router>
