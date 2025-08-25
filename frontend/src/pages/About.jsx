@@ -44,7 +44,7 @@ export default function About() {
         <Typography variant="h3" sx={{ mt: 2, fontWeight: 700 }}>
           Safer, faster first-step medical guidance
         </Typography>
-        <Typography variant="h6" color="black" sx={{ mt: 1 }}>
+        <Typography variant="h6" color="#42a5f5" sx={{ mt: 1 }}>
           An AI triage companion that explains urgency and next steps — not a
           diagnosis.
         </Typography>

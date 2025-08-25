@@ -1,9 +1,27 @@
 import React, { useState } from "react";
 import {
-  Container, Grid, Card, CardContent, Typography, TextField, MenuItem,
-  Button, Stack, Snackbar, Alert, CircularProgress, Box, Divider
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  MenuItem,
+  Button,
+  Stack,
+  Snackbar,
+  Alert,
+  CircularProgress,
+  Box,
+  Divider,
 } from "@mui/material";
-import { Email, Phone, LocationOn, Send, RestartAlt } from "@mui/icons-material";
+import {
+  Email,
+  Phone,
+  LocationOn,
+  Send,
+  RestartAlt,
+} from "@mui/icons-material";
 
 const categories = [
   { value: "support", label: "Support" },
@@ -28,10 +46,13 @@ export default function Contact() {
 
   const validate = () => {
     const e = {};
-    if (!form.name || form.name.trim().length < 2) e.name = "Please enter your name.";
+    if (!form.name || form.name.trim().length < 2)
+      e.name = "Please enter your name.";
     if (!emailOk(form.email)) e.email = "Enter a valid email address.";
-    if (!form.subject || form.subject.trim().length < 3) e.subject = "Subject is too short.";
-    if (!form.message || form.message.trim().length < 10) e.message = "Message must be at least 10 characters.";
+    if (!form.subject || form.subject.trim().length < 3)
+      e.subject = "Subject is too short.";
+    if (!form.message || form.message.trim().length < 10)
+      e.message = "Message must be at least 10 characters.";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -47,29 +68,49 @@ export default function Contact() {
 
     try {
       setLoading(true);
-      // TODO: replace with your backend API call:
-      // await axios.post("/api/contact", form);
       await new Promise((r) => setTimeout(r, 1000)); // simulate network
-      setSnack({ open: true, type: "success", msg: "Thanks! We’ll get back to you shortly." });
-      setForm({ name: "", email: "", subject: "", category: "support", message: "" });
+      setSnack({
+        open: true,
+        type: "success",
+        msg: "Thanks! We’ll get back to you shortly.",
+      });
+      setForm({
+        name: "",
+        email: "",
+        subject: "",
+        category: "support",
+        message: "",
+      });
     } catch (err) {
-      setSnack({ open: true, type: "error", msg: "Something went wrong. Please try again." });
+      setSnack({
+        open: true,
+        type: "error",
+        msg: "Something went wrong. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   const handleReset = () => {
-    setForm({ name: "", email: "", subject: "", category: "support", message: "" });
+    setForm({
+      name: "",
+      email: "",
+      subject: "",
+      category: "support",
+      message: "",
+    });
     setErrors({});
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <Container maxWidth="lg" sx={{ py: 6, mt: 6 }}>
       {/* Header */}
       <Box sx={{ textAlign: "center", mb: 5 }}>
-        <Typography variant="h3" fontWeight={700}>Contact Us</Typography>
-        <Typography variant="h6" color="black" sx={{ mt: 1 }}>
+        <Typography variant="h3" fontWeight={700}>
+          Contact Us
+        </Typography>
+        <Typography variant="h6" color="#42a5f5" sx={{ mt: 1 }}>
           Questions, feedback, or partnership ideas? We’d love to hear from you.
         </Typography>
       </Box>
@@ -79,7 +120,9 @@ export default function Contact() {
         <Grid item xs={12} md={7}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>Send us a message</Typography>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Send us a message
+              </Typography>
               <Box component="form" onSubmit={handleSubmit}>
                 <Stack spacing={2}>
                   <TextField
@@ -122,7 +165,9 @@ export default function Contact() {
                         fullWidth
                       >
                         {categories.map((c) => (
-                          <MenuItem key={c.value} value={c.value}>{c.label}</MenuItem>
+                          <MenuItem key={c.value} value={c.value}>
+                            {c.label}
+                          </MenuItem>
                         ))}
                       </TextField>
                     </Grid>
@@ -152,7 +197,9 @@ export default function Contact() {
                     <Button
                       type="submit"
                       variant="contained"
-                      endIcon={loading ? <CircularProgress size={18} /> : <Send />}
+                      endIcon={
+                        loading ? <CircularProgress size={18} /> : <Send />
+                      }
                       disabled={loading}
                     >
                       {loading ? "Sending..." : "Send Message"}
@@ -168,30 +215,42 @@ export default function Contact() {
         <Grid item xs={12} md={5}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>Contact details</Typography>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Contact details
+              </Typography>
               <Stack spacing={2}>
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <Email color="primary" /><Typography>support@docprompt.app</Typography>
+                  <Email color="primary" />
+                  <Typography>support@docprompt.app</Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <Phone color="primary" /><Typography>+1 (555) 555-1234</Typography>
+                  <Phone color="primary" />
+                  <Typography>+1 (555) 555-1234</Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <LocationOn color="primary" /><Typography>Remote • Worldwide</Typography>
+                  <LocationOn color="primary" />
+                  <Typography>Remote • Worldwide</Typography>
                 </Stack>
               </Stack>
 
               <Divider sx={{ my: 3 }} />
 
-              <Typography variant="subtitle1" sx={{ mb: 1 }}>Response time</Typography>
+              <Typography variant="subtitle1" sx={{ mb: 1 }}>
+                Response time
+              </Typography>
               <Typography variant="body2" color="text.secondary">
                 We typically respond within 1–2 business days.
               </Typography>
 
-              <Box sx={{ mt: 3, p: 2, bgcolor: "action.hover", borderRadius: 2 }}>
-                <Typography variant="subtitle2" gutterBottom>Security note</Typography>
+              <Box
+                sx={{ mt: 3, p: 2, bgcolor: "action.hover", borderRadius: 2 }}
+              >
+                <Typography variant="subtitle2" gutterBottom>
+                  Security note
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Don’t include personal health information. For urgent issues, call local emergency services.
+                  Don’t include personal health information. For urgent issues,
+                  call local emergency services.
                 </Typography>
               </Box>
             </CardContent>
