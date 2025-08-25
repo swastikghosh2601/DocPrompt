@@ -10,24 +10,52 @@ export default function Navbar() {
           DocPrompt
         </Typography>
 
-        {/* Navigation links */}
-        <Button color="inherit" component={RouterLink} to="/">
+        {/* Navigation links with visited color */}
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/"
+          sx={{ "&:visited": { color: "lightgrey" } }}
+        >
           Home
         </Button>
-        <Button color="inherit" component={RouterLink} to="/about">
+
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/about"
+          sx={{ "&:visited": { color: "lightgrey" } }}
+        >
           About
         </Button>
-        <Button color="inherit" component={RouterLink} to="/contact">
+
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/contact"
+          sx={{ "&:visited": { color: "lightgrey" } }}
+        >
           Contact
         </Button>
-        <Button color="inherit" component={RouterLink} to="/login">
+
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/login"
+          sx={{ "&:visited": { color: "lightgrey" } }}
+        >
           Login
         </Button>
+
         <Button
           variant="contained"
           component={RouterLink}
           to="/signup"
-          sx={{ ml: 2, bgcolor: "secondary.main" }}
+          sx={{
+            ml: 2,
+            bgcolor: "secondary.main",
+            "&:visited": { bgcolor: "secondary.main", color: "lightgrey" },
+          }}
         >
           Signup
         </Button>
