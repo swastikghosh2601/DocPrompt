@@ -24,16 +24,11 @@ export default function SymptomForm() {
 
   return (
     <Container
-      maxWidth={false}
-      disableGutters
-      sx={{
-        minWidth: '100vw',
-        height: 'calc(100vh - 64px)',
-        mt: '64px',
-        p: 0,
-      }}
+      maxWidth="md"   // ✅ smaller width (you can try "md" too)
+      disableGutters={false}
+      sx={{ mt: "80px" }} // spacing from navbar
     >
-      <Paper elevation={3} sx={{ width: '100vw', height: '100%', borderRadius: 0, p: 4, m: 0 }}>
+      <Paper elevation={3} sx={{ width: "100%", p: 4 }}>
         <Typography variant="h5" gutterBottom>
           Describe Your Symptoms
         </Typography>

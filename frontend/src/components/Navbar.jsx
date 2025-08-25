@@ -11,6 +11,9 @@ export default function Navbar() {
         </Typography>
 
         {/* Navigation links */}
+        <Button color="inherit" component={RouterLink} to="/">
+          Home
+        </Button>
         <Button color="inherit" component={RouterLink} to="/about">
           About
         </Button>

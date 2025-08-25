@@ -10,6 +10,7 @@ export default function App() {
   return (
     <Router>
       {/* Navbar stays at the top */}
+      
       <Navbar />  
 
       <div className="min-h-screen w-full">
@@ -27,6 +28,8 @@ export default function App() {
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         </Routes>
       </div>
+      
     </Router>
+
   );
 }     

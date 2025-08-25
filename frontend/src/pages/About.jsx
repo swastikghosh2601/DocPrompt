@@ -33,7 +33,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <Container maxWidth="lg" sx={{ mt: "100px", pb: 6 }}>
       {/* Hero */}
       <Box sx={{ textAlign: "center", mb: 6 }}>
         <Chip
@@ -44,7 +44,7 @@ export default function About() {
         <Typography variant="h3" sx={{ mt: 2, fontWeight: 700 }}>
           Safer, faster first-step medical guidance
         </Typography>
-        <Typography variant="h6" color="white" sx={{ mt: 1 }}>
+        <Typography variant="h6" color="black" sx={{ mt: 1 }}>
           An AI triage companion that explains urgency and next steps — not a
           diagnosis.
         </Typography>

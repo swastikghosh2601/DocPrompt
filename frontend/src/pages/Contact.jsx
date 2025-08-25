@@ -69,7 +69,7 @@ export default function Contact() {
       {/* Header */}
       <Box sx={{ textAlign: "center", mb: 5 }}>
         <Typography variant="h3" fontWeight={700}>Contact Us</Typography>
-        <Typography variant="h6" color="white" sx={{ mt: 1 }}>
+        <Typography variant="h6" color="black" sx={{ mt: 1 }}>
           Questions, feedback, or partnership ideas? We’d love to hear from you.
         </Typography>
       </Box>
