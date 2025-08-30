@@ -38,6 +38,16 @@ export default function Navbar() {
           Contact
         </Button>
 
+        {/* ✅ New History button */}
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/history"
+          sx={{ "&:visited": { color: "lightgrey" } }}
+        >
+          History
+        </Button>
+
         <Button
           color="inherit"
           component={RouterLink}

@@ -15,13 +15,7 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-import {
-  Email,
-  Phone,
-  LocationOn,
-  Send,
-  RestartAlt,
-} from "@mui/icons-material";
+import { Email, Phone, LocationOn, Send, RestartAlt } from "@mui/icons-material";
 
 const categories = [
   { value: "support", label: "Support" },
@@ -46,11 +40,9 @@ export default function Contact() {
 
   const validate = () => {
     const e = {};
-    if (!form.name || form.name.trim().length < 2)
-      e.name = "Please enter your name.";
+    if (!form.name || form.name.trim().length < 2) e.name = "Please enter your name.";
     if (!emailOk(form.email)) e.email = "Enter a valid email address.";
-    if (!form.subject || form.subject.trim().length < 3)
-      e.subject = "Subject is too short.";
+    if (!form.subject || form.subject.trim().length < 3) e.subject = "Subject is too short.";
     if (!form.message || form.message.trim().length < 10)
       e.message = "Message must be at least 10 characters.";
     setErrors(e);
@@ -104,176 +96,184 @@ export default function Contact() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6, mt: 6 }}>
-      {/* Header */}
-      <Box sx={{ textAlign: "center", mb: 5 }}>
-        <Typography variant="h3" fontWeight={700}>
-          Contact Us
-        </Typography>
-        <Typography variant="h6" color="#42a5f5" sx={{ mt: 1 }}>
-          Questions, feedback, or partnership ideas? We’d love to hear from you.
-        </Typography>
-      </Box>
+    <Box
+      sx={{
+        width: "100vw",
+        minHeight: "100vh",
+        bgcolor: "background.default",
+        color: "text.primary",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        py: 2,
+      }}
+    >
+      <Container maxWidth="lg">
+        {/* Header */}
+        <Box sx={{ textAlign: "center", mb: 2 }}>
+          <Typography variant="h3" fontWeight={700}>
+            Contact Us
+          </Typography>
+          <Typography variant="h6" color="#42a5f5" sx={{ mt: 1 }}>
+            Questions, feedback, or partnership ideas? We’d love to hear from you.
+          </Typography>
+        </Box>
 
-      <Grid container spacing={4}>
-        {/* Left: Contact Form */}
-        <Grid item xs={12} md={7}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Send us a message
-              </Typography>
-              <Box component="form" onSubmit={handleSubmit}>
-                <Stack spacing={2}>
-                  <TextField
-                    label="Your Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    error={!!errors.name}
-                    helperText={errors.name}
-                    fullWidth
-                  />
-                  <TextField
-                    label="Email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    error={!!errors.email}
-                    helperText={errors.email}
-                    fullWidth
-                  />
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        label="Subject"
-                        name="subject"
-                        value={form.subject}
-                        onChange={handleChange}
-                        error={!!errors.subject}
-                        helperText={errors.subject}
-                        fullWidth
-                      />
+        <Grid container spacing={4}>
+          {/* Left: Contact Form */}
+          <Grid item xs={12} md={7}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  Send us a message
+                </Typography>
+                <Box component="form" onSubmit={handleSubmit}>
+                  <Stack spacing={2}>
+                    <TextField
+                      label="Your Name"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      error={!!errors.name}
+                      helperText={errors.name}
+                      fullWidth
+                    />
+                    <TextField
+                      label="Email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      error={!!errors.email}
+                      helperText={errors.email}
+                      fullWidth
+                    />
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          label="Subject"
+                          name="subject"
+                          value={form.subject}
+                          onChange={handleChange}
+                          error={!!errors.subject}
+                          helperText={errors.subject}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          select
+                          label="Category"
+                          name="category"
+                          value={form.category}
+                          onChange={handleChange}
+                          fullWidth
+                        >
+                          {categories.map((c) => (
+                            <MenuItem key={c.value} value={c.value}>
+                              {c.label}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        select
-                        label="Category"
-                        name="category"
-                        value={form.category}
-                        onChange={handleChange}
-                        fullWidth
+                    <TextField
+                      label="Message"
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      error={!!errors.message}
+                      helperText={errors.message}
+                      fullWidth
+                      multiline
+                      minRows={5}
+                    />
+
+                    <Stack direction="row" spacing={2} justifyContent="flex-end">
+                      <Button
+                        type="button"
+                        variant="outlined"
+                        startIcon={<RestartAlt />}
+                        onClick={handleReset}
+                        disabled={loading}
                       >
-                        {categories.map((c) => (
-                          <MenuItem key={c.value} value={c.value}>
-                            {c.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                  </Grid>
-                  <TextField
-                    label="Message"
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    error={!!errors.message}
-                    helperText={errors.message}
-                    fullWidth
-                    multiline
-                    minRows={5}
-                  />
+                        Reset
+                      </Button>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        endIcon={loading ? <CircularProgress size={18} /> : <Send />}
+                        disabled={loading}
+                      >
+                        {loading ? "Sending..." : "Send Message"}
+                      </Button>
+                    </Stack>
+                  </Stack>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-                  <Stack direction="row" spacing={2} justifyContent="flex-end">
-                    <Button
-                      type="button"
-                      variant="outlined"
-                      startIcon={<RestartAlt />}
-                      onClick={handleReset}
-                      disabled={loading}
-                    >
-                      Reset
-                    </Button>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      endIcon={
-                        loading ? <CircularProgress size={18} /> : <Send />
-                      }
-                      disabled={loading}
-                    >
-                      {loading ? "Sending..." : "Send Message"}
-                    </Button>
+          {/* Right: Contact Details */}
+          <Grid item xs={12} md={5}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  Contact details
+                </Typography>
+                <Stack spacing={2}>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Email color="primary" />
+                    <Typography>support@docprompt.app</Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Phone color="primary" />
+                    <Typography>+1 (555) 555-1234</Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <LocationOn color="primary" />
+                    <Typography>Remote • Worldwide</Typography>
                   </Stack>
                 </Stack>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
 
-        {/* Right: Contact Details */}
-        <Grid item xs={12} md={5}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Contact details
-              </Typography>
-              <Stack spacing={2}>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Email color="primary" />
-                  <Typography>support@docprompt.app</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Phone color="primary" />
-                  <Typography>+1 (555) 555-1234</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <LocationOn color="primary" />
-                  <Typography>Remote • Worldwide</Typography>
-                </Stack>
-              </Stack>
+                <Divider sx={{ my: 3 }} />
 
-              <Divider sx={{ my: 3 }} />
-
-              <Typography variant="subtitle1" sx={{ mb: 1 }}>
-                Response time
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                We typically respond within 1–2 business days.
-              </Typography>
-
-              <Box
-                sx={{ mt: 3, p: 2, bgcolor: "action.hover", borderRadius: 2 }}
-              >
-                <Typography variant="subtitle2" gutterBottom>
-                  Security note
+                <Typography variant="subtitle1" sx={{ mb: 1 }}>
+                  Response time
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Don’t include personal health information. For urgent issues,
-                  call local emergency services.
+                  We typically respond within 1–2 business days.
                 </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
 
-      {/* Snackbars */}
-      <Snackbar
-        open={snack.open}
-        autoHideDuration={4000}
-        onClose={() => setSnack((s) => ({ ...s, open: false }))}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
+                <Box sx={{ mt: 3, p: 2, bgcolor: "action.hover", borderRadius: 2 }}>
+                  <Typography variant="subtitle2" gutterBottom>
+                    Security note
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Don’t include personal health information. For urgent issues, call local emergency services.
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+
+        {/* Snackbars */}
+        <Snackbar
+          open={snack.open}
+          autoHideDuration={4000}
           onClose={() => setSnack((s) => ({ ...s, open: false }))}
-          severity={snack.type}
-          variant="filled"
-          sx={{ width: "100%" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
-          {snack.msg}
-        </Alert>
-      </Snackbar>
-    </Container>
+          <Alert
+            onClose={() => setSnack((s) => ({ ...s, open: false }))}
+            severity={snack.type}
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            {snack.msg}
+          </Alert>
+        </Snackbar>
+      </Container>
+    </Box>
   );
 }
