@@ -1,15 +1,30 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box, Button, List, ListItem, Link } from "@mui/material";
 
 export default function TriageResult() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Get the triage result passed via state
-  const result = location.state?.result || {
-    condition: "Unknown condition",
-    advice: "Please consult a doctor.",
+  // Get the triage result passed via state OR fallback to defaults
+  const result = {
+    condition: location.state?.result?.condition || "Unknown condition",
+    advice: location.state?.result?.advice || "Please consult a doctor.",
+    citations:
+      location.state?.result?.citations || [
+        {
+          text: "Mayo Clinic - Symptom Checker",
+          url: "https://www.mayoclinic.org/symptom-checker",
+        },
+        {
+          text: "WebMD - Symptoms A to Z",
+          url: "https://symptoms.webmd.com/",
+        },
+        {
+          text: "NHS UK - Health A-Z",
+          url: "https://www.nhs.uk/conditions/",
+        },
+      ],
   };
 
   return (
@@ -25,6 +40,7 @@ export default function TriageResult() {
         alignItems: "center",
         textAlign: "center",
         px: 2,
+        py: 6,
       }}
     >
       <Typography variant="h3" fontWeight={600} gutterBottom>
@@ -38,6 +54,22 @@ export default function TriageResult() {
         <Typography variant="body1" gutterBottom>
           Recommendation: {result.advice}
         </Typography>
+      </Box>
+
+      {/* ✅ Citations Section */}
+      <Box mt={5} textAlign="left" maxWidth="600px">
+        <Typography variant="h6" gutterBottom>
+          References:
+        </Typography>
+        <List>
+          {result.citations.map((citation, index) => (
+            <ListItem key={index} sx={{ display: "list-item", pl: 2 }}>
+              <Link href={citation.url} target="_blank" rel="noopener">
+                {citation.text}
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Box>
 
       {/* Buttons */}
